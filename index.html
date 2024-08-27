@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        #branding {
+            float: left;
+        }
+        #branding h1 {
+            margin: 0;
+        }
+        nav {
+            float: right;
+            margin-top: 10px;
+        }
+        .search-bar {
+            margin: 20px 0;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .movie {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .movie:hover {
+            transform: scale(1.05);
+        }
+        .movie img {
+            max-width: 100%;
+            height: auto;
+        }
+        .movie h2 {
+            margin-top: 0;
+        }
+        .code-entry {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .code-entry input {
+            padding: 10px;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        .code-entry button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .code-entry button:hover {
+            background-color: #555;
+        }
+        .discord-link {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .discord-link a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .discord-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="code-entry" id="code-entry">
+        <h2>Enter Access Code</h2>
+        <input type="text" id="access-code" placeholder="Enter access code">
+        <button onclick="checkCode()">Submit</button>
+        <div class="discord-link" id="discord-link">
+            <p>Don't have a code? <a href="https://discord.com/invite/B3twTZez" target="_blank">Join our Discord to get one!</a></p>
+        </div>
+    </div>
+
+    <div class="container" id="content" style="display: none;">
+        <header>
+            <div class="container">
+                <div id="branding">
+                    <h1>My Movie Website</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Movies</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for a movie...">
+        </div>
+
+        <div class="movie">
+            <h2>S.W.A.T.</h2>
+            <img src="path_to_swat_wallpaper.jpg" alt="S.W.A.T.">
+            <iframe src="https://vidsrc.xyz/embed/tv/tt6111130" referrerpolicy="origin" allowfullscreen sandbox="allow-scripts allow-same-origin" width="100%" height="500px"></iframe>
+        </div>
+
+        <div class="movie">
+            <h2>Station 19</h2>
+            <img src="path_to_station19_wallpaper.jpg" alt="Station 19">
+            <iframe src="https://vidsrc.xyz/embed/tv/tt7053188" referrerpolicy="origin" allowfullscreen sandbox="allow-scripts allow-same-origin" width="100%" height="500px"></iframe>
+        </div>
+
+        <div class="movie">
+            <h2>Chicago Fire</h2>
+            <img src="path_to_chicagofire_wallpaper.jpg" alt="Chicago Fire">
+            <iframe src="https://vidsrc.xyz/embed/tv/tt2261391" referrerpolicy="origin" allowfullscreen sandbox="allow-scripts allow-same-origin" width="100%" height="500px"></iframe>
+        </div>
+
+        <div class="movie">
+            <h2>Chicago P.D.</h2>
+            <img src="path_to_chicagopd_wallpaper.jpg" alt="Chicago P.D.">
+            <iframe src="https://vidsrc.xyz/embed/tv/tt2805096" referrerpolicy="origin" allowfullscreen sandbox="allow-scripts allow-same-origin" width="100%" height="500px"></iframe>
+        </div>
+
+        <div class="movie">
+            <h2>The Rookie</h2>
+            <img src="path_to_therookie_wallpaper.jpg" alt="The Rookie">
+            <iframe src="https://vidsrc.xyz/embed/tv/tt7587890" referrerpolicy="origin" allowfullscreen sandbox="allow-scripts allow-same-origin" width="100%" height="500px"></iframe>
+        </div>
+
+        <div class="movie">
+            <h2>9-1-1</h2>
+            <img src="path_to_911_wallpaper.jpg" alt="9-1-1">
+            <iframe src="https://vidsrc.xyz/embed/tv/tt7235466" referrerpolicy="origin" allowfullscreen sandbox="allow-scripts allow-same-origin" width="100%" height="500px"></iframe>
+        </div>
+
+        <div class="movie">
+            <h2>The Good Doctor</h2>
+            <img src="path_to_thegooddoctor_wallpaper.jpg" alt="The Good Doctor">
+            <iframe src="https://vidsrc.xyz/embed/tv/tt6470478" referrerpolicy="origin" allowfullscreen sandbox="allow-scripts allow-same-origin" width="100%" height="500px"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const validCodes = ["EnOj312", "Jinas821", "Jkaiw954"]; // Add your valid codes here
+
+        function checkCode() {
+            const code = document.getElementById('access-code').value;
+            if (validCodes.includes(code)) {
+                document.getElementById('code-entry').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            } else {
+                document.getElementById('discord-link').style.display = 'block';
+            }
+        }
+
+        document.getElementById('search').addEventListener('input', function() {
+            let searchValue = this.value.toLowerCase();
+            let movies = document.querySelectorAll('.movie');
+            movies.forEach(function(movie) {
+                let title = movie.querySelector('h2').textContent.toLowerCase();
+                if (title.includes(searchValue)) {
+                    movie.style.display = '';
+                } else {
+                    movie.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
