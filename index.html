@@ -192,95 +192,72 @@
     </div>
 <script>
      const validCodes = ["CODE423", "CODE456", "CODE789"]; // Add your valid codes here
-        const adminCode = "admin"; // Admin code
+const adminCode = "ADMIN"; // Admin code
 
-        function checkCode() {
-            const code = document.getElementById('access-code').value;
-            if (validCodes.includes(code)) {
-                document.getElementById('code-entry').style.display = 'none';
-                document.getElementById('content').style.display = 'block';
-            } else if (code === adminCode) {
-                document.getElementById('code-entry').style.display = 'none';
-                document.getElementById('content').style.display = 'block';
-                document.getElementById('admin-panel').style.display = 'block';
-            } else {
-                document.getElementById('discord-link').style.display = 'block';
-            }
+function checkCode() {
+    const code = document.getElementById('access-code').value;
+    if (validCodes.includes(code)) {
+        document.getElementById('code-entry').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('admin-panel').style.display = 'none'; // Ensure admin panel is hidden
+    } else if (code === adminCode) {
+        document.getElementById('code-entry').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('admin-panel').style.display = 'block';
+    } else {
+        document.getElementById('discord-link').style.display = 'block';
+    }
+}
+
+document.getElementById('search').addEventListener('input', function() {
+    let searchValue = this.value.toLowerCase();
+    let movies = document.querySelectorAll('.movie');
+    movies.forEach(function(movie) {
+        let title = movie.querySelector('h2').textContent.toLowerCase();
+        if (title.includes(searchValue)) {
+            movie.style.display = '';
+        } else {
+            movie.style.display = 'none';
         }
+    });
+});
 
-        document.getElementById('check-code-button').addEventListener('click', checkCode);
+function addMovie() {
+    const title = document.getElementById('movie-title').value;
+    const imgPath = document.getElementById('movie-img').value;
+    const iframeURL = document.getElementById('movie-iframe').value;
 
-        document.getElementById('search').addEventListener('input', function() {
-            let searchValue = this.value.toLowerCase();
-            let movies = document.querySelectorAll('.movie');
-            movies.forEach(function(movie) {
-                let title = movie.querySelector('h2').textContent.toLowerCase();
-                if (title.includes(searchValue)) {
-                    movie.style.display = '';
-                } else {
-                    movie.style.display = 'none';
-                }
-            });
-        });
+    if (title && imgPath && iframeURL) {
+        const movieList = document.getElementById('movie-list');
+        const movieDiv = document.createElement('div');
+        movieDiv.classList.add('movie');
 
-        function addMovie() {
-            const title = document.getElementById('movie-title').value;
-            const imgPath = document.getElementById('movie-img').value;
-            const iframeURL = document.getElementById('movie-iframe').value;
+        const movieTitle = document.createElement('h2');
+        movieTitle.textContent = title;
 
-            if (title && imgPath && iframeURL) {
-                const movie = { title, imgPath, iframeURL };
-                saveMovie(movie);
-                displayMovie(movie);
+        const movieImg = document.createElement('img');
+        movieImg.src = imgPath;
 
-                // Clear input fields
-                document.getElementById('movie-title').value = '';
-                document.getElementById('movie-img').value = '';
-                document.getElementById('movie-iframe').value = '';
-            } else {
-                alert('Please fill in all fields');
-            }
-        }
+        const movieIframe = document.createElement('iframe');
+        movieIframe.src = iframeURL;
+        movieIframe.style.width = '100%';
+        movieIframe.style.height = '500px';
 
-        function saveMovie(movie) {
-            let movies = JSON.parse(localStorage.getItem('movies')) || [];
-            movies.push(movie);
-            localStorage.setItem('movies', JSON.stringify(movies));
-        }
+        movieDiv.appendChild(movieTitle);
+        movieDiv.appendChild(movieImg);
+        movieDiv.appendChild(movieIframe);
 
-        function loadMovies() {
-            let movies = JSON.parse(localStorage.getItem('movies')) || [];
-            movies.forEach(displayMovie);
-        }
+        movieList.appendChild(movieDiv);
 
-        function displayMovie(movie) {
-            const movieList = document.getElementById('movie-list');
-            const movieDiv = document.createElement('div');
-            movieDiv.classList.add('movie');
+        // Clear input fields
+        document.getElementById('movie-title').value = '';
+        document.getElementById('movie-img').value = '';
+        document.getElementById('movie-iframe').value = '';
+    } else {
+        alert('Please fill in all fields');
+    }
+}
 
-            const movieTitle = document.createElement('h2');
-            movieTitle.textContent = movie.title;
-
-            const movieImg = document.createElement('img');
-            movieImg.src = movie.imgPath;
-
-            const movieIframe = document.createElement('iframe');
-            movieIframe.src = movie.iframeURL;
-            movieIframe.setAttribute('referrerpolicy', 'origin');
-            movieIframe.setAttribute('allowfullscreen', '');
-            movieIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-            movieIframe.setAttribute('width', '100%');
-            movieIframe.setAttribute('height', '500px');
-
-            movieDiv.appendChild(movieTitle);
-            movieDiv.appendChild(movieImg);
-            movieDiv.appendChild(movieIframe);
-
-            movieList.appendChild(movieDiv);
-        }
-
-        // Load movies on page load
-        window.onload = loadMovies;
 </script>
 </body>
 </html>
